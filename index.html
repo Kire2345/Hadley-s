@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hadley's Favorite Phrases</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-image: url(https://chatgpt.com/library?tab=images); /* Replace with actual image URL */
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .button-container {
+      display: grid;
+      grid-template-columns: repeat(2, 150px);
+      gap: 20px;
+    }
+    button {
+      background-color: rgba(0, 123, 255, 0.9);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: rgba(0, 86, 179, 0.9);
+    }
+    .count {
+      margin-top: 8px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hadley's Favorite Phrases</h1>
+  <div class="button-container">
+    <div>
+      <button onclick="increment(1)">Jesus Christ</button>
+      <div class="count" id="count1">0</div>
+    </div>
+    <div>
+      <button onclick="increment(2)">God Damnit</button>
+      <div class="count" id="count2">0</div>
+    </div>
+    <div>
+      <button onclick="increment(3)">God</button>
+      <div class="count" id="count3">0</div>
+    </div>
+    <div>
+      <button onclick="increment(4)">Swear to God</button>
+      <div class="count" id="count4">0</div>
+    </div>
+  </div>
+
+  <script>
+    // Load counts from local storage or start with zeros
+    const counts = JSON.parse(localStorage.getItem('phraseCounts')) || [0, 0, 0, 0];
+
+    // Display stored counts on load
+    window.onload = () => {
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById(`count${i}`).innerText = counts[i - 1];
+      }
+    };
+
+    // Increment and save counts
+    function increment(index) {
+      counts[index - 1]++;
+      document.getElementById(`count${index}`).innerText = counts[index - 1];
+      localStorage.setItem('phraseCounts', JSON.stringify(counts));
+    }
+  </script>
+</body>
+</html>
